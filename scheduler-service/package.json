@@ -1,0 +1,25 @@
+{
+  "name": "graphic-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@serkans/log-service": "^1.0.3",
+    "amqplib": "^0.8.0",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.8.2",
+    "ts-node": "^10.7.0"
+  },
+  "scripts": {
+    "start:dev": "ts-node-transpile-only lib/app.ts",
+    "start:prod": "tsc && node dist/app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

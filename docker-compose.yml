@@ -1,0 +1,41 @@
+version: '3'
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+  queue:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  api-service:
+    build: './api-service'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - queue
+    environment:
+      - MONGO_URL=mongodb://db/crypto
+      - PORT=3000
+      - RabbitMQ_URL=amqp://queue:5672
+      - SOCKET_CLIENT_SERVER=http://localhost:8080
+    restart: on-failure
+  scheduler-service:
+    build: './scheduler-service'
+    ports:
+      - "3001:3001"
+    depends_on:
+      - queue
+    environment:
+      - PORT=3001
+      - RabbitMQ_URL=amqp://queue:5672
+    restart: on-failure  
+  app:
+    build: './app'
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+    restart: on-failure

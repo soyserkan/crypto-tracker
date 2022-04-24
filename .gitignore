@@ -1,0 +1,9 @@
+api-service/node_modules
+api-service/dist
+api-service/public/log
+scheduler-service/node_modules
+scheduler-service/dist
+scheduler-service/public/log
+app/node_modules
+app/dist
+.vscode
