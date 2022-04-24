@@ -6,4 +6,5 @@ scheduler-service/dist
 scheduler-service/public/log
 app/node_modules
 app/dist
+
 .vscode
